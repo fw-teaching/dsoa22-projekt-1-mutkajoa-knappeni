@@ -4,13 +4,15 @@
  * Datastrukturer och algoritmer
  *
  * Programmeringsteam:
- *
+ * mutkajoa
+ * knappeni
  */
 public class Main {
 
-	public static void main(String[] args) {
+	static GraphData graphData = new GraphData();
 
+	public static void main(String[] args) {
+		GraphData.createGraph();
 	}
 
 }
-

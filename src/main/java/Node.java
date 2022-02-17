@@ -4,6 +4,7 @@ public class Node extends GraphData {
 
     public String name;
     public String key;
+    public double hValue;
     public double latitude;
     public double longitude;
     public ArrayList<Node> neighbours = new ArrayList<>();
@@ -12,6 +13,12 @@ public class Node extends GraphData {
         setName(name);
         setLatitude(latitude);
         setLongitude(longitude);
+    }
+
+    public double calculateH(Node endNode) {
+
+        return hValue;
+
     }
 
     public void setName(String name) {

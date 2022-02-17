@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-public class Node {
+public class Node extends GraphData {
 
-    String name;
-    String key;
-    double latitude;
-    double longitude;
-    ArrayList<Node> neighbours = new ArrayList<>();
+    public String name;
+    public String key;
+    public double latitude;
+    public double longitude;
+    public ArrayList<Node> neighbours = new ArrayList<>();
 
     public Node(String name, double latitude, double longitude) {
         setName(name);
@@ -47,7 +47,7 @@ public class Node {
     }
 
     public void addNeighbour(Node node) {
-        // this.neighbours =neighbours;
+        neighbours.add(node);
     }
 
     public ArrayList<Node> getNeighbours() {

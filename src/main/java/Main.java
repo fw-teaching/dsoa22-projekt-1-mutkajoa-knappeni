@@ -15,15 +15,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		System.out.println("key    Name                         Neighbours");
-		GraphData.createGraph().entrySet().forEach(Entry -> {
-			ArrayList<String> neighboursArray = new ArrayList<>();
-			String key = Entry.getKey();
-			String name = GraphData.createGraph().get(key).getName();
-			GraphData.createGraph().get(key).getNeighbours().forEach(Key -> {
-				neighboursArray.add(Key.getName());
-			});
-			System.out.println(String.format("[%s] %s -> %s", key, name, neighboursArray));
-		});
+		System.out.println(Route.listNodesAndLinks(graphData));
+
 	}
 }

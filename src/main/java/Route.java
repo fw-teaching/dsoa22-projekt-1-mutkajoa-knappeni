@@ -39,16 +39,51 @@ public class Route {
         return bigString;
     }
 
-    public static Node getRoute(Node startNode, Node endNode) {
-        ArrayList<String> candidates = new ArrayList<>();
-        ArrayList<String> visited = new ArrayList<>();
+    public static ArrayList<Node> getRoute(Node startNode, Node endNode) {
+        ArrayList<Node> candidates = new ArrayList<>();
+        ArrayList<Node> visited = new ArrayList<>();
         Node currentNode = startNode;
         Boolean done = false;
 
-        while (done == false) {
-            int minF = 0;
-            String nextNode = null;
+        while (!done) {
+            Double minF = 0.0;
+            Node nextNode = null;
+
+            for(Node neighbour : currentNode.getNeighbours()) {
+                if((!visited.contains(neighbour)) && (!candidates.contains(neighbour))){
+                    candidates.addAll(currentNode.getNeighbours());
+                    neighbour.setPrevious(currentNode);
+                }
+            }
+            for (Node node : candidates) {
+                if(node == endNode){
+                    done = true;
+                    break;
+                }else{
+                  Double f = node.getF(node, endNode);
+
+                  if((minF == 0) || (minF > f)){
+                      minF = f;
+                      nextNode = node;
+                      if(currentNode.getNeighbours().contains(node)){
+                          node.setPrevious(currentNode);
+                      }
+                  }
+                }
+            }
+            if(!done){
+                currentNode = nextNode;
+                visited.add(currentNode);
+                candidates.remove(currentNode);
+            }
+       
         }
-        return;
+    ArrayList<Node> routeArrayList = new ArrayList<>();
+    currentNode = endNode;
+    while(currentNode != startNode){
+        routeArrayList.add(0, currentNode);
+        currentNode.setPrevious(currentNode);
+    }
+    return routeArrayList;
     }
 }

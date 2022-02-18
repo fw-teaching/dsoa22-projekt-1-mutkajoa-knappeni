@@ -1,7 +1,26 @@
 import java.util.ArrayList;
 
 public class Route {
+    public Node startNode;
+    public Node endNode;
     static String bigString = "key  Name                      Neighbours\n";
+
+    public Route(Node startnNode, Node endNode){
+        setStartNode(startNode);
+        setEndNode(endNode);
+    }
+    public void setStartNode(Node startNode) {
+        this.startNode = startNode;
+    }
+    public void setEndNode(Node endNode) {
+        this.endNode = endNode;
+    }
+    public Node getEndNode() {
+        return endNode;
+    }
+    public Node getStartNode() {
+        return startNode;
+    }
 
     public static String listNodesAndLinks(GraphData graphData) {
         GraphData.createGraph().entrySet().forEach(Entry -> {

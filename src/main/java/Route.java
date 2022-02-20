@@ -40,6 +40,7 @@ public class Route {
     }
 
     public static ArrayList<Node> getRoute(Node startNode, Node endNode) {
+
         ArrayList<Node> candidates = new ArrayList<>();
         ArrayList<Node> visited = new ArrayList<>();
         Node currentNode = startNode;
@@ -48,42 +49,47 @@ public class Route {
         while (!done) {
             Double minF = 0.0;
             Node nextNode = null;
-
-            for(Node neighbour : currentNode.getNeighbours()) {
-                if((!visited.contains(neighbour)) && (!candidates.contains(neighbour))){
-                    candidates.addAll(currentNode.getNeighbours());
-                    neighbour.setPrevious(currentNode);
+            try {
+                for (Node neighbour : currentNode.getNeighbours()) {
+                    if ((!visited.contains(neighbour)) && (!candidates.contains(neighbour))) {
+                        candidates.addAll(currentNode.getNeighbours());
+                        neighbour.setPrevious(currentNode);
+                    }
                 }
+
+            } catch (NullPointerException e) {
+                done = true;
+                break;
             }
             for (Node node : candidates) {
-                if(node == endNode){
+                if (node == endNode) {
                     done = true;
                     break;
-                }else{
-                  Double f = node.getF(node, endNode);
+                } else {
+                    Double f = node.getF(node, endNode);
 
-                  if((minF == 0) || (minF > f)){
-                      minF = f;
-                      nextNode = node;
-                      if(currentNode.getNeighbours().contains(node)){
-                          node.setPrevious(currentNode);
-                      }
-                  }
+                    if ((minF == 0) || (minF > f)) {
+                        minF = f;
+                        nextNode = node;
+                        if (currentNode.getNeighbours().contains(node)) {
+                            node.setPrevious(currentNode);
+                        }
+                    }
                 }
             }
-            if(!done){
+            if (!done) {
                 currentNode = nextNode;
                 visited.add(currentNode);
                 candidates.remove(currentNode);
             }
-       
+
         }
-    ArrayList<Node> routeArrayList = new ArrayList<>();
-    currentNode = endNode;
-    while(currentNode != startNode){
-        routeArrayList.add(0, currentNode);
-        currentNode.setPrevious(currentNode);
-    }
-    return routeArrayList;
+        ArrayList<Node> routeArrayList = new ArrayList<>();
+        currentNode = endNode;
+        while (currentNode != startNode) {
+            routeArrayList.add(0, currentNode);
+            currentNode.setPrevious(currentNode);
+        }
+        return routeArrayList;
     }
 }

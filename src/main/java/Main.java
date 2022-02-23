@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 /**
@@ -11,20 +13,21 @@ import java.util.Scanner;
  */
 public class Main {
 
-	static GraphData graphData = new GraphData();
+	
 
 	public static void main(String[] args) {
-
+		LinkedHashMap<String, Node> graphData = GraphData.createGraph();
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Här är alla bibliotek och deras grannar:");
-		System.out.println(Route.listNodesAndLinks(graphData));
+		//System.out.println(Route.listNodesAndLinks(graphData));
 		System.out.println("Skriv in din start punkt och din destination!");
 		System.out.print("Start: ");
-		Node startPos = GraphData.createGraph().get(scanner.nextLine());
+		Node startPos = graphData.get(scanner.nextLine());
 		System.out.print("Destination: ");
-		Node endPos = GraphData.createGraph().get(scanner.nextLine());
+		Node endPos = graphData.get(scanner.nextLine());
 		System.out.println(startPos);
 		Route.getRoute(startPos, endPos);
+		
 		scanner.close();
 	}
 }

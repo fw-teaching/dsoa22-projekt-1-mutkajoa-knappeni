@@ -14,13 +14,11 @@ import java.util.Scanner;
  */
 public class Main {
 
-	
-
 	public static void main(String[] args) {
 		LinkedHashMap<String, Node> graphData = GraphData.createGraph();
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Här är alla bibliotek och deras grannar:");
-		//System.out.println(Route.listNodesAndLinks(graphData));
+		// System.out.println(Route.listNodesAndLinks(graphData));
 		System.out.println("Skriv in din start punkt och din destination!");
 		System.out.print("Start: ");
 		Node startPos = graphData.get(scanner.nextLine());
@@ -30,10 +28,12 @@ public class Main {
 		shortroute.add(startPos);
 		Collections.reverse(shortroute);
 		for (Node node : shortroute) {
-			System.out.println(node.getKey());
+			System.out.println("Kortaste rutten:");
+			System.out.println(
+					String.format("%s. [%s] %s", (shortroute.lastIndexOf(node) + 1), node.getKey(), node.getName()));
 		}
 		scanner.close();
 		System.out.println("code runned");
-		
+
 	}
 }

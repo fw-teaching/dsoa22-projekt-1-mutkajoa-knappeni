@@ -26,8 +26,12 @@ public class Main {
 		System.out.print("Destination: ");
 		Node endPos = graphData.get(scanner.nextLine());
 		System.out.println(startPos);
-		Route.getRoute(startPos, endPos);
-		
+		ArrayList<Node> shortroute = new ArrayList<Node>( Route.getRoute(startPos, endPos));
+		for (Node node : shortroute) {
+			System.out.println(node.getKey());
+		}
 		scanner.close();
+		System.out.println("code runned");
+		
 	}
 }

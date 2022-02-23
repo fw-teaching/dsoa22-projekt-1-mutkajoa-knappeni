@@ -49,18 +49,15 @@ public class Route {
         while (!done) {
             Double minF = 0.0;
             Node nextNode = null;
-            try {
+           
                 for (Node neighbour : currentNode.getNeighbours()) {
                     if ((!visited.contains(neighbour)) && (!candidates.contains(neighbour))) {
-                        candidates.addAll(currentNode.getNeighbours());
+                        candidates.add(neighbour);
                         neighbour.setPrevious(currentNode);
                     }
                 }
 
-            } catch (NullPointerException e) {
-                done = true;
-                break;
-            }
+           
             for (Node node : candidates) {
                 if (node == endNode) {
                     done = true;
@@ -87,8 +84,8 @@ public class Route {
         ArrayList<Node> routeArrayList = new ArrayList<>();
         currentNode = endNode;
         while (currentNode != startNode) {
-            routeArrayList.add(0, currentNode);
-            currentNode.setPrevious(currentNode);
+            routeArrayList.add(currentNode);
+            currentNode = currentNode.getPrevious();
         }
         return routeArrayList;
     }

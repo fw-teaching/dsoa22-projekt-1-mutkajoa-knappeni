@@ -47,7 +47,7 @@ public class Route {
         Boolean done = false;
 
         while (!done) {
-            Double minF = 0.0;
+            double minF = 0;
             Node nextNode = null;
            
                 for (Node neighbour : currentNode.getNeighbours()) {
@@ -58,18 +58,18 @@ public class Route {
                 }
 
            
-            for (Node node : candidates) {
-                if (node == endNode) {
+            for (Node candidate : candidates) {
+                if (candidate == endNode) {
                     done = true;
                     break;
                 } else {
-                    Double f = node.getF(node, endNode);
-
-                    if ((minF == 0) || (minF > f)) {
+                    double f = candidate.getF(startNode,endNode);
+                    
+                    if ((minF == 0.0) || (minF > f)) {
                         minF = f;
-                        nextNode = node;
-                        if (currentNode.getNeighbours().contains(node)) {
-                            node.setPrevious(currentNode);
+                        nextNode = candidate;
+                        if (currentNode.getNeighbours().contains(candidate)) {
+                            candidate.setPrevious(currentNode);
                         }
                     }
                 }

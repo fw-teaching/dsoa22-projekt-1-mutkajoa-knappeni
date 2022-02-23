@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
@@ -25,8 +26,9 @@ public class Main {
 		Node startPos = graphData.get(scanner.nextLine());
 		System.out.print("Destination: ");
 		Node endPos = graphData.get(scanner.nextLine());
-		System.out.println(startPos);
-		ArrayList<Node> shortroute = new ArrayList<Node>( Route.getRoute(startPos, endPos));
+		ArrayList<Node> shortroute = new ArrayList<Node>(Route.getRoute(startPos, endPos));
+		shortroute.add(startPos);
+		Collections.reverse(shortroute);
 		for (Node node : shortroute) {
 			System.out.println(node.getKey());
 		}

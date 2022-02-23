@@ -4,7 +4,6 @@ public class Node extends GraphData {
 
     public String name;
     public String key;
-    public double hValue;
     public double latitude;
     public double longitude;
     public Node previous;
@@ -16,12 +15,7 @@ public class Node extends GraphData {
         setLongitude(longitude);
     }
 
-    public double calculateH(Node endNode) {
-        Node currentNode = this;
-        hValue = Utils.getDistance(currentNode.getLatitude(), currentNode.getLongitude(), endNode.getLatitude(), endNode.getLongitude());
-        return hValue;
-    }
-
+   
     public void setName(String name) {
         this.name = name;
     }
@@ -67,6 +61,13 @@ public class Node extends GraphData {
     public Node getPrevious() {
         return previous;
     }
+
+    public double calculateH(Node endNode) {
+        Node currentNode = this;
+        double hValue = Utils.getDistance(currentNode.getLatitude(), currentNode.getLongitude(), endNode.getLatitude(), endNode.getLongitude());
+        return hValue;
+    }
+
     public double calculateG(Node startNode){
         double g = 0;
         Node currentNode = this;

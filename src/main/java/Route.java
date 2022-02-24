@@ -27,12 +27,13 @@ public class Route {
         return startNode;
     }
 
-    public static String listNodesAndLinks(LinkedHashMap<String, Node> linkedHashMap) {
-        GraphData.createGraph().entrySet().forEach(Entry -> {
+    public static String listNodesAndLinks(LinkedHashMap<String, Node> graphData) {
+        // Loopar alla värden i vår lista och lägger dem i en array som vi returnerar
+        graphData.entrySet().forEach(Entry -> {
             ArrayList<String> neighboursArray = new ArrayList<>();
             String key = Entry.getKey();
-            String name = GraphData.createGraph().get(key).getName();
-            GraphData.createGraph().get(key).getNeighbours().forEach(Key -> {
+            String name = graphData.get(key).getName();
+            graphData.get(key).getNeighbours().forEach(Key -> {
                 neighboursArray.add(Key.getName());
             });
             // För att formatera listNodesAndLinks till liknande som Fredrik :>

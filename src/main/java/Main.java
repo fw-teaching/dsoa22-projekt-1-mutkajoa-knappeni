@@ -30,16 +30,19 @@ public class Main {
 				System.out.println(showGraph);
 			} else if (mainChoice.equals("2")) {
 				routeLoop: while (true) {
+					// Olik text om det är första gången man kollar kortaste rutten
 					if (firstTry == true) {
 						System.out.println(
 								"Tryck på \"enter\" för att gå vidare, \"s\" för att visa alla bibliotek och deras grannar eller \"q\" för att hoppa tillbaka till huvudmenyn.");
 						firstTry = false;
+						// Om man matar in fel key så kommer det "försök pånytt"
 					} else {
 						System.out.println(
 								"Tryck på \"enter\" för att försöka på nytt, \"s\" för att visa alla bibliotek och deras grannar eller \"q\" för att hoppa tillbaka till huvudmenyn.");
 					}
 					String routeChoice = scanner.nextLine();
 					if (routeChoice.equals("q")) {
+						firstTry = true;
 						break routeLoop;
 					} else if (routeChoice.equals("s")) {
 						System.out.println("Här är alla bibliotek och deras grannar:");
@@ -65,8 +68,9 @@ public class Main {
 											String.format("%s. [%s] %s", (shortroute.lastIndexOf(node) + 1),
 													node.getKey(),
 													node.getName()));
-									break routeLoop;
 								}
+								firstTry = true;
+								break routeLoop;
 							} else {
 								System.out.println("Destinationen finns inte i listan!");
 							}

@@ -35,6 +35,7 @@ public class Route {
             GraphData.createGraph().get(key).getNeighbours().forEach(Key -> {
                 neighboursArray.add(Key.getName());
             });
+            // För att formatera listNodesAndLinks till liknande som Fredrik :>
             bigString = bigString.concat("[" + key + "] " + name + "-> " + neighboursArray.toString() + "\n");
         });
         return bigString;

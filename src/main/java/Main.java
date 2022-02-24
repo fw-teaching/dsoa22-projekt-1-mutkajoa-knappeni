@@ -1,4 +1,3 @@
-import java.nio.file.FileStore;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -22,7 +21,6 @@ public class Main {
 		boolean firstTry = true;
 
 		mainLoop: while (true) {
-
 			System.out.println("Välj 1 om du vill se alla bibliotek och deras grannar.");
 			System.out.println("Välj 2 om du vill se kortaste rutten mellan två bibliotek.");
 			System.out.println("Välj 3 om du vill avsluta programmet.");

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class Route {
     public Node startNode;
@@ -26,7 +27,7 @@ public class Route {
         return startNode;
     }
 
-    public static String listNodesAndLinks(GraphData graphData) {
+    public static String listNodesAndLinks(LinkedHashMap<String, Node> linkedHashMap) {
         GraphData.createGraph().entrySet().forEach(Entry -> {
             ArrayList<String> neighboursArray = new ArrayList<>();
             String key = Entry.getKey();
@@ -49,22 +50,21 @@ public class Route {
         while (!done) {
             double minF = 0;
             Node nextNode = null;
-           
-                for (Node neighbour : currentNode.getNeighbours()) {
-                    if ((!visited.contains(neighbour)) && (!candidates.contains(neighbour))) {
-                        candidates.add(neighbour);
-                        neighbour.setPrevious(currentNode);
-                    }
-                }
 
-           
+            for (Node neighbour : currentNode.getNeighbours()) {
+                if ((!visited.contains(neighbour)) && (!candidates.contains(neighbour))) {
+                    candidates.add(neighbour);
+                    neighbour.setPrevious(currentNode);
+                }
+            }
+
             for (Node candidate : candidates) {
                 if (candidate == endNode) {
                     done = true;
                     break;
                 } else {
-                    double f = candidate.getF(startNode,endNode);
-                    
+                    double f = candidate.getF(startNode, endNode);
+
                     if ((minF == 0.0) || (minF > f)) {
                         minF = f;
                         nextNode = candidate;

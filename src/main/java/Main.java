@@ -79,12 +79,10 @@ public class Main {
 						}
 					}
 				}
-
 			} else if (mainChoice.equals("3")) {
 				System.out.println("Tack och adjö!");
 				break mainLoop;
 			}
-
 		}
 		scanner.close();
 	}

@@ -3,7 +3,7 @@ import java.util.LinkedHashMap;
 
 public class GraphData {
 
-    public static LinkedHashMap<String,Node> createGraph() {
+    public static LinkedHashMap<String, Node> createGraph() {
 
         /**
          * Noderna instansieras med namn och koordinater i en
@@ -13,12 +13,12 @@ public class GraphData {
          * lagras i en länkad lista och behåller därför sin ursprungliga ordning
          * (inte nödvändigt för funktionaliteten, men mer användarvänligt)
          */
-        LinkedHashMap<String,Node> nodes = new LinkedHashMap<>();
+        LinkedHashMap<String, Node> nodes = new LinkedHashMap<>();
 
         /** Temporär lista för nodernas grannar */
-        HashMap<String,String[]> neighbors = new HashMap<>();
+        HashMap<String, String[]> neighbours = new HashMap<>();
 
-        //         key              name                        lat      lon
+        // key name lat lon
         nodes.put("gumt", new Node("Gumtäkts uni.bibliotek   ", 60.2039, 24.9638));
         nodes.put("lill", new Node("Lillhoplax bibliotek     ", 60.2008, 24.8954));
         nodes.put("bole", new Node("Böle bibliotek           ", 60.2008, 24.9355));
@@ -39,39 +39,35 @@ public class GraphData {
          * Data för nodernas grannar enligt linjerna på kartan. HashMap med ID
          * och en enkel String[]-array för grannarnas ID.
          */
-        neighbors.put("gumt", new String[]{"bole", "arca"});
-        neighbors.put("lill", new String[]{"bole", "mejl"});
-        neighbors.put("bole", new String[]{"lill", "tolo", "gumt"});
-        neighbors.put("arca", new String[]{"gumt", "diak"});
-        neighbors.put("diak", new String[]{"arca", "vall"});
-        neighbors.put("vall", new String[]{"diak", "berg"});
-        neighbors.put("mejl", new String[]{"lill", "tolo"});
-        neighbors.put("berg", new String[]{"vall", "tolo", "sorn", "oodi"});
-        neighbors.put("tolo", new String[]{"bole", "mejl", "berg", "oodi", "hank"});
-        neighbors.put("sorn", new String[]{"berg"});
-        neighbors.put("oodi", new String[]{"tolo", "berg", "hank", "hels"});
-        neighbors.put("hels", new String[]{"oodi", "rich"});
-        neighbors.put("hank", new String[]{"tolo", "oodi", "bush"});
-        neighbors.put("rich", new String[]{"hels", "bush"});
-        neighbors.put("bush", new String[]{"hank", "rich"});
-
+        neighbours.put("gumt", new String[] { "bole", "arca" });
+        neighbours.put("lill", new String[] { "bole", "mejl" });
+        neighbours.put("bole", new String[] { "lill", "tolo", "gumt" });
+        neighbours.put("arca", new String[] { "gumt", "diak" });
+        neighbours.put("diak", new String[] { "arca", "vall" });
+        neighbours.put("vall", new String[] { "diak", "berg" });
+        neighbours.put("mejl", new String[] { "lill", "tolo" });
+        neighbours.put("berg", new String[] { "vall", "tolo", "sorn", "oodi" });
+        neighbours.put("tolo", new String[] { "bole", "mejl", "berg", "oodi", "hank" });
+        neighbours.put("sorn", new String[] { "berg" });
+        neighbours.put("oodi", new String[] { "tolo", "berg", "hank", "hels" });
+        neighbours.put("hels", new String[] { "oodi", "rich" });
+        neighbours.put("hank", new String[] { "tolo", "oodi", "bush" });
+        neighbours.put("rich", new String[] { "hels", "bush" });
+        neighbours.put("bush", new String[] { "hank", "rich" });
 
         /**
          * Iterera noderna enligt ID och lägg till grannarna
          */
         for (String key : nodes.keySet()) {
 
-            /* Ange nyckeln (t.ex. "bole") som ID åt noden, kan vara bra att ha för UI  */
+            /* Ange nyckeln (t.ex. "bole") som ID åt noden, kan vara bra att ha för UI */
             nodes.get(key).setKey(key);
 
             /* Iterera nodens grannar och lägg till dem till noden */
-            for (String neighbor : neighbors.get(key)) {
-                nodes.get(key).addNeighbor(nodes.get(neighbor));
+            for (String neighbor : neighbours.get(key)) {
+                nodes.get(key).addNeighbour(nodes.get(neighbor));
             }
-
         }
-
         return nodes;
     }
-
 }
